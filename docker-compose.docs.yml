@@ -1,0 +1,16 @@
+services:
+  docs:
+    image: trade_tracker_local_docs
+    container_name: trade_tracker_local_docs
+    build:
+      context: .
+      dockerfile: ./compose/local/docs/Dockerfile
+    env_file:
+      - ./.envs/.local/.django
+    volumes:
+      - ./docs:/docs:z
+      - ./config:/app/config:z
+      - ./trade_tracker:/app/trade_tracker:z
+    ports:
+      - '9000:9000'
+    command: /start-docs
